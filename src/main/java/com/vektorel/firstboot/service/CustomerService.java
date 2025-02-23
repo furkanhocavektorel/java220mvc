@@ -2,6 +2,7 @@ package com.vektorel.firstboot.service;
 
 import com.vektorel.firstboot.entity.Admin;
 import com.vektorel.firstboot.entity.Customer;
+import com.vektorel.firstboot.models.RegisterModel;
 import com.vektorel.firstboot.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +17,13 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public void saveCustomer(String name,String surname,String email,String password,String username){
+    public void saveCustomer(RegisterModel model){
 
         Customer customer= new Customer();
-        customer.setName(name);
-        customer.setUsername(surname);
-        customer.setUsername(username);
-        customer.setEmail(email);
-        customer.setPassword(password);
-
+        customer.setName(model.getName());
+        customer.setSurname(model.getSurname());
+        customer.setEmail(model.getMail());
+        customer.setPassword(model.getPass());
         customerRepository.save(customer);
 
     }
