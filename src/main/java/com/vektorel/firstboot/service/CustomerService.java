@@ -1,7 +1,7 @@
 package com.vektorel.firstboot.service;
 
-import com.vektorel.firstboot.entity.Admin;
 import com.vektorel.firstboot.entity.Customer;
+import com.vektorel.firstboot.models.LoginModel;
 import com.vektorel.firstboot.models.RegisterModel;
 import com.vektorel.firstboot.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -32,6 +32,19 @@ public class CustomerService {
     public List<Customer> getAllCustomers(){
         return customerRepository.findAll();
     }
+
+
+    public boolean login(LoginModel loginModel) {
+
+        Customer customer= customerRepository.findByEmailAndPassword(loginModel.getEmail(), loginModel.getPassword());
+
+        if (customer!=null){
+            return true;
+        }
+
+        return false;
+    }
+
 
 
 }
